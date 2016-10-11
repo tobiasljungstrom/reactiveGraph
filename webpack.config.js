@@ -1,3 +1,5 @@
+/* global __dirname:false */
+
 var HTMLWebpackPlugin = require('html-webpack-plugin');
 var HTMLWebpackPluginConfig = new HTMLWebpackPlugin({
     template: __dirname + '/app/index.html',
@@ -14,6 +16,10 @@ module.exports = {
                 test: /\.js$/,
                 exclude: /node_modules/,
                 loader: 'babel-loader'
+            },
+            {
+                test: /\.scss$/,
+                loaders: ['style', 'css', 'sass']
             }
         ]
     },
@@ -23,7 +29,5 @@ module.exports = {
         path: __dirname + '/build'
     },
 
-    plugins: [
-        HTMLWebpackPluginConfig
-    ]
+    plugins: [HTMLWebpackPluginConfig]
 };
