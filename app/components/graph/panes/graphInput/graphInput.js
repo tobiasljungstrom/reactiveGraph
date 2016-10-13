@@ -7,7 +7,8 @@ var GraphInput = React.createClass({
         updateData: React.PropTypes.func
     },
 
-    updateData: this.props.updateData;
+    updateData: function(index, data) {
+        this.props.updateData(index, data);
     },
 
     render: function() {

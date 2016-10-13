@@ -8,7 +8,11 @@ var InputField = React.createClass({
     },
 
     handleChange: function(event) {
-        this.props.updateColumn(this.props.inputId, event.target.value);
+        var value = event.target.value;
+        if(!value){
+            value = 0;
+        }
+        this.props.updateColumn(this.props.inputId, parseInt(value));
     },
 
     render: function() {
