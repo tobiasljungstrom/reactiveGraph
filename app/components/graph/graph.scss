@@ -1,3 +1,13 @@
 .graph {
-    background-color: blue;
+    background-color: rgb(179, 56, 34);
+
+    width: 700px;
+    height: 500px;
+    margin: auto;
+
+    padding: 20px;
+
 }
+
+@import 'panes/barPane/barPane.scss';
+@import 'panes/numberPane/numberPane.scss';

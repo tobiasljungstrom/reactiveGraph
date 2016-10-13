@@ -1,0 +1,13 @@
+.barPane {
+    display: inline-block;
+    width:600px;
+    height: 100%;
+    margin-left: 100px;
+
+    background-color: rgb(130, 199, 100);
+
+    position: relative;
+
+}
+
+@import 'bar/bar.scss';

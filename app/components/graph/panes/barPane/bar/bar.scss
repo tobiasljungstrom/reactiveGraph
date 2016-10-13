@@ -1,0 +1,14 @@
+.bar {
+    display: inline-block;
+
+    background-color: rgb(245, 207, 9);
+
+    width: 80px;
+    height: 100%;
+    margin: 0 10px 0 10px;
+
+    position: relative;
+}
+
+@import 'barFill/barFill.scss';
+@import 'barLabel/barLabel.scss';

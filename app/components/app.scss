@@ -3,6 +3,8 @@ body {
         family: sans-serif;
         size: 100%;
     }
+    padding: 30px;
 }
 
 @import 'graph/graph.scss';
+@import '../reset.css';
