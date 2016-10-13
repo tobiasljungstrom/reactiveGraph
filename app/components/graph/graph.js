@@ -6,16 +6,25 @@ var GraphInput = require('./panes/graphInput/graphInput');
 var Graph = React.createClass({
     getInitialState: function() {
         return {
-            data: [3, 5, 7, 2, 8, 5]
+            data: [300, 500, 450, 200, 350, 100]
         };
     },
+
+    updateData: function(index, data) {
+        var newData = this.state.data;
+        newData[index] = data;
+        this.setState({
+            data: newData
+        });
+    },
+
     render: function() {
 
         return (
             <div className='graph'>
                 <NumberPane />
-                <BarPane />
-                <GraphInput />
+                <BarPane data={this.state.data}/>
+                <GraphInput data={this.state.data} updateData={this.updateData}/>
             </div>
         );
     }
