@@ -1,6 +1,7 @@
 var React = require('react');
 var NumberPane = require('./panes/numberPane/numberPane');
 var BarPane = require('./panes/barPane/barPane');
+var GraphInput = require('./panes/graphInput/graphInput');
 
 var Graph = React.createClass({
     getInitialState: function() {
@@ -14,6 +15,7 @@ var Graph = React.createClass({
             <div className='graph'>
                 <NumberPane />
                 <BarPane />
+                <GraphInput />
             </div>
         );
     }

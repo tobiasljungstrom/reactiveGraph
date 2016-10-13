@@ -5,9 +5,10 @@
     height: 500px;
     margin: auto;
 
-    padding: 20px;
+    padding: 30px;
 
 }
 
 @import 'panes/barPane/barPane.scss';
 @import 'panes/numberPane/numberPane.scss';
+@import 'panes/graphInput/graphInput.scss';

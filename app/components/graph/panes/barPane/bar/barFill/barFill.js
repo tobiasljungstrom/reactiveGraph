@@ -1,6 +1,10 @@
 var React = require('react');
 
 var BarFill = React.createClass({
+    propTypes: {
+        height: React.PropTypes.number
+    },
+    
     render: function() {
 
         var barStyle = {
