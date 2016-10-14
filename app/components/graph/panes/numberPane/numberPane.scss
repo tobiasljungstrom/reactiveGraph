@@ -3,11 +3,19 @@
     width: 100px;
     height: 500px;
 
+
+
     background-color: rgb(12, 113, 177);
 
     position: absolute;
 }
 
 .numberPane__item {
-    margin-bottom: 100px;
+    width: 100%;
+    text-align: right;
+
+    border-bottom: 1px solid yellow;
+
+    position: absolute;
+    bottom:0;
 }

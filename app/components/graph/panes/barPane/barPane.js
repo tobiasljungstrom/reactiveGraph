@@ -8,11 +8,12 @@ var BarPane = React.createClass({
 
     render: function() {
 
-        var calculatedMaxValue = Math.max.apply(Math, this.props.data);
+        var maxValue = Math.max.apply(Math, this.props.data);
+        if (!maxValue) {maxValue = 1;}
 
         var calculatedHeights = [];
         for (var i = 0; i < this.props.data.length; i++) {
-            calculatedHeights[i] = this.props.data[i] / calculatedMaxValue * 500;
+            calculatedHeights[i] = this.props.data[i] / maxValue * 500;
         }
 
         var bars = [];
