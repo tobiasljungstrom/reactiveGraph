@@ -8,7 +8,6 @@ var App = React.createClass({
         return (
 
             <div>
-                <h1>Reactive!</h1>
                 <div>
                     <Graph />
                 </div>

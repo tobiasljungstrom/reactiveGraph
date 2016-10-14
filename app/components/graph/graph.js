@@ -10,9 +10,17 @@ var Graph = React.createClass({
                 3,
                 4,
                 7,
-                1,
+                10,
                 8,
                 5
+            ],
+            labels: [
+                'A',
+                'B',
+                'C',
+                'D',
+                'E',
+                'F'
             ]
         };
     },
@@ -27,7 +35,7 @@ var Graph = React.createClass({
         return (
             <div className='graph'>
                 <NumberPane data={this.state.data}/>
-                <BarPane data={this.state.data}/>
+                <BarPane data={this.state.data} labels={this.state.labels}/>
                 <GraphInput data={this.state.data} updateData={this.updateData}/>
             </div>
         );

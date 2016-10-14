@@ -3,7 +3,8 @@ var Bar = require('./bar/bar');
 
 var BarPane = React.createClass({
     propTypes: {
-        data: React.PropTypes.array
+        data: React.PropTypes.array,
+        labels: React.PropTypes.array
     },
 
     render: function() {
@@ -18,8 +19,8 @@ var BarPane = React.createClass({
 
         var bars = [];
 
-        for (var i = 0; i < this.props.data.length; i++) {
-            bars[i] = <Bar key={i} height={calculatedHeights[i]} />;
+        for (i = 0; i < this.props.data.length; i++) {
+            bars[i] = <Bar key={i} height={calculatedHeights[i]} label={this.props.labels[i]}/>;
         }
 
         return (
