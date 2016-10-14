@@ -3,10 +3,6 @@
     width: 100px;
     height: 500px;
 
-
-
-    background-color: rgb(12, 113, 177);
-
     position: absolute;
 }
 
@@ -14,7 +10,7 @@
     width: 100%;
     text-align: right;
 
-    border-bottom: 1px solid yellow;
+    border-bottom: 1px solid $lightGrey;
 
     position: absolute;
     bottom:0;

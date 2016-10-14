@@ -6,13 +6,9 @@ var Graph = require('./graph/graph');
 var App = React.createClass({
     render: function() {
         return (
-
             <div>
-                <div>
-                    <Graph />
-                </div>
+                <Graph/>
             </div>
-
         );
     }
 });
