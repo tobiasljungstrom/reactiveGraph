@@ -21,7 +21,7 @@ var InputField = React.createClass({
 
         return (
             <div className='inputField'>
-                <input type="number" value={this.props.defaultValue} onChange={this.handleChange}/>
+                <input type="number" style={{width:40}} value={this.props.defaultValue} onChange={this.handleChange}/>
             </div>
             );
     }
