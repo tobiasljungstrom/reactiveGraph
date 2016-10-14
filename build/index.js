@@ -21421,8 +21421,10 @@
 /* 172 */
 /***/ function(module, exports, __webpack_require__) {
 
+	__webpack_require__(173);
+
 	var React = __webpack_require__(1);
-	var Graph = __webpack_require__(173);
+	var Graph = __webpack_require__(178);
 
 	var App = React.createClass({
 	    displayName: 'App',
@@ -21431,16 +21433,7 @@
 	        return React.createElement(
 	            'div',
 	            null,
-	            React.createElement(
-	                'h1',
-	                null,
-	                'Reactive!'
-	            ),
-	            React.createElement(
-	                'div',
-	                null,
-	                React.createElement(Graph, null)
-	            )
+	            React.createElement(Graph, null)
 	        );
 	    }
 	});
@@ -21451,21 +21444,634 @@
 /* 173 */
 /***/ function(module, exports, __webpack_require__) {
 
+	// style-loader: Adds some css to the DOM by adding a <style> tag
+
+	// load the styles
+	var content = __webpack_require__(174);
+	if(typeof content === 'string') content = [[module.id, content, '']];
+	// add the styles to the DOM
+	var update = __webpack_require__(177)(content, {});
+	if(content.locals) module.exports = content.locals;
+	// Hot Module Replacement
+	if(false) {
+		// When the styles change, update the <style> tags
+		if(!content.locals) {
+			module.hot.accept("!!./../../node_modules/css-loader/index.js!./../../node_modules/sass-loader/index.js!./app.scss", function() {
+				var newContent = require("!!./../../node_modules/css-loader/index.js!./../../node_modules/sass-loader/index.js!./app.scss");
+				if(typeof newContent === 'string') newContent = [[module.id, newContent, '']];
+				update(newContent);
+			});
+		}
+		// When the module is disposed, remove the <style> tags
+		module.hot.dispose(function() { update(); });
+	}
+
+/***/ },
+/* 174 */
+/***/ function(module, exports, __webpack_require__) {
+
+	exports = module.exports = __webpack_require__(175)();
+	// imports
+	exports.i(__webpack_require__(176), "");
+
+	// module
+	exports.push([module.id, "body {\n  font-family: sans-serif;\n  font-size: 100%;\n  padding: 30px; }\n\n.graph {\n  width: 700px;\n  height: 500px;\n  margin: auto;\n  padding: 40px 40px 80px 40px;\n  border: 1px solid #c9c9c9; }\n\n.barPane {\n  display: inline-block;\n  width: 600px;\n  height: 100%;\n  margin-left: 100px;\n  position: relative; }\n\n.bar {\n  display: inline-block;\n  width: 80px;\n  height: 100%;\n  margin: 0 10px 0 10px;\n  position: relative; }\n\n.barFill {\n  background: linear-gradient(#e66514 0%, #4baacd 100%);\n  width: 100%;\n  position: absolute;\n  bottom: 0px; }\n\n.barLabel {\n  height: 30px;\n  width: 100%;\n  text-align: center;\n  color: #828282;\n  position: absolute;\n  bottom: -35px; }\n  .barLabel font {\n    size: 27px;\n    family: Helvetica, Arial, Sans-serif; }\n\n.numberPane {\n  display: inline-block;\n  width: 100px;\n  height: 500px;\n  position: absolute; }\n\n.numberPane__item {\n  width: 100%;\n  text-align: right;\n  border-bottom: 1px solid #c9c9c9;\n  position: absolute;\n  bottom: 0; }\n\n.graphInput {\n  margin: 30px 0 0 100px; }\n\n.inputField {\n  display: inline-block;\n  width: 80px;\n  margin: 0 10px; }\n  .inputField input {\n    width: 80px; }\n", ""]);
+
+	// exports
+
+
+/***/ },
+/* 175 */
+/***/ function(module, exports) {
+
+	/*
+		MIT License http://www.opensource.org/licenses/mit-license.php
+		Author Tobias Koppers @sokra
+	*/
+	// css base code, injected by the css-loader
+	module.exports = function() {
+		var list = [];
+
+		// return the list of modules as css string
+		list.toString = function toString() {
+			var result = [];
+			for(var i = 0; i < this.length; i++) {
+				var item = this[i];
+				if(item[2]) {
+					result.push("@media " + item[2] + "{" + item[1] + "}");
+				} else {
+					result.push(item[1]);
+				}
+			}
+			return result.join("");
+		};
+
+		// import a list of modules into the list
+		list.i = function(modules, mediaQuery) {
+			if(typeof modules === "string")
+				modules = [[null, modules, ""]];
+			var alreadyImportedModules = {};
+			for(var i = 0; i < this.length; i++) {
+				var id = this[i][0];
+				if(typeof id === "number")
+					alreadyImportedModules[id] = true;
+			}
+			for(i = 0; i < modules.length; i++) {
+				var item = modules[i];
+				// skip already imported module
+				// this implementation is not 100% perfect for weird media query combinations
+				//  when a module is imported multiple times with different media queries.
+				//  I hope this will never occur (Hey this way we have smaller bundles)
+				if(typeof item[0] !== "number" || !alreadyImportedModules[item[0]]) {
+					if(mediaQuery && !item[2]) {
+						item[2] = mediaQuery;
+					} else if(mediaQuery) {
+						item[2] = "(" + item[2] + ") and (" + mediaQuery + ")";
+					}
+					list.push(item);
+				}
+			}
+		};
+		return list;
+	};
+
+
+/***/ },
+/* 176 */
+/***/ function(module, exports, __webpack_require__) {
+
+	exports = module.exports = __webpack_require__(175)();
+	// imports
+
+
+	// module
+	exports.push([module.id, "/* http://meyerweb.com/eric/tools/css/reset/\n   v2.0 | 20110126\n   License: none (public domain)\n*/\n\nhtml, body, div, span, applet, object, iframe,\nh1, h2, h3, h4, h5, h6, p, blockquote, pre,\na, abbr, acronym, address, big, cite, code,\ndel, dfn, em, img, ins, kbd, q, s, samp,\nsmall, strike, strong, sub, sup, tt, var,\nb, u, i, center,\ndl, dt, dd, ol, ul, li,\nfieldset, form, label, legend,\ntable, caption, tbody, tfoot, thead, tr, th, td,\narticle, aside, canvas, details, embed,\nfigure, figcaption, footer, header, hgroup,\nmenu, nav, output, ruby, section, summary,\ntime, mark, audio, video {\n\tmargin: 0;\n\tpadding: 0;\n\tborder: 0;\n\tfont-size: 100%;\n\tfont: inherit;\n\tvertical-align: baseline;\n}\n/* HTML5 display-role reset for older browsers */\narticle, aside, details, figcaption, figure,\nfooter, header, hgroup, menu, nav, section {\n\tdisplay: block;\n}\nbody {\n\tline-height: 1;\n}\nol, ul {\n\tlist-style: none;\n}\nblockquote, q {\n\tquotes: none;\n}\nblockquote:before, blockquote:after,\nq:before, q:after {\n\tcontent: '';\n\tcontent: none;\n}\ntable {\n\tborder-collapse: collapse;\n\tborder-spacing: 0;\n}\n", ""]);
+
+	// exports
+
+
+/***/ },
+/* 177 */
+/***/ function(module, exports, __webpack_require__) {
+
+	/*
+		MIT License http://www.opensource.org/licenses/mit-license.php
+		Author Tobias Koppers @sokra
+	*/
+	var stylesInDom = {},
+		memoize = function(fn) {
+			var memo;
+			return function () {
+				if (typeof memo === "undefined") memo = fn.apply(this, arguments);
+				return memo;
+			};
+		},
+		isOldIE = memoize(function() {
+			return /msie [6-9]\b/.test(window.navigator.userAgent.toLowerCase());
+		}),
+		getHeadElement = memoize(function () {
+			return document.head || document.getElementsByTagName("head")[0];
+		}),
+		singletonElement = null,
+		singletonCounter = 0,
+		styleElementsInsertedAtTop = [];
+
+	module.exports = function(list, options) {
+		if(false) {
+			if(typeof document !== "object") throw new Error("The style-loader cannot be used in a non-browser environment");
+		}
+
+		options = options || {};
+		// Force single-tag solution on IE6-9, which has a hard limit on the # of <style>
+		// tags it will allow on a page
+		if (typeof options.singleton === "undefined") options.singleton = isOldIE();
+
+		// By default, add <style> tags to the bottom of <head>.
+		if (typeof options.insertAt === "undefined") options.insertAt = "bottom";
+
+		var styles = listToStyles(list);
+		addStylesToDom(styles, options);
+
+		return function update(newList) {
+			var mayRemove = [];
+			for(var i = 0; i < styles.length; i++) {
+				var item = styles[i];
+				var domStyle = stylesInDom[item.id];
+				domStyle.refs--;
+				mayRemove.push(domStyle);
+			}
+			if(newList) {
+				var newStyles = listToStyles(newList);
+				addStylesToDom(newStyles, options);
+			}
+			for(var i = 0; i < mayRemove.length; i++) {
+				var domStyle = mayRemove[i];
+				if(domStyle.refs === 0) {
+					for(var j = 0; j < domStyle.parts.length; j++)
+						domStyle.parts[j]();
+					delete stylesInDom[domStyle.id];
+				}
+			}
+		};
+	}
+
+	function addStylesToDom(styles, options) {
+		for(var i = 0; i < styles.length; i++) {
+			var item = styles[i];
+			var domStyle = stylesInDom[item.id];
+			if(domStyle) {
+				domStyle.refs++;
+				for(var j = 0; j < domStyle.parts.length; j++) {
+					domStyle.parts[j](item.parts[j]);
+				}
+				for(; j < item.parts.length; j++) {
+					domStyle.parts.push(addStyle(item.parts[j], options));
+				}
+			} else {
+				var parts = [];
+				for(var j = 0; j < item.parts.length; j++) {
+					parts.push(addStyle(item.parts[j], options));
+				}
+				stylesInDom[item.id] = {id: item.id, refs: 1, parts: parts};
+			}
+		}
+	}
+
+	function listToStyles(list) {
+		var styles = [];
+		var newStyles = {};
+		for(var i = 0; i < list.length; i++) {
+			var item = list[i];
+			var id = item[0];
+			var css = item[1];
+			var media = item[2];
+			var sourceMap = item[3];
+			var part = {css: css, media: media, sourceMap: sourceMap};
+			if(!newStyles[id])
+				styles.push(newStyles[id] = {id: id, parts: [part]});
+			else
+				newStyles[id].parts.push(part);
+		}
+		return styles;
+	}
+
+	function insertStyleElement(options, styleElement) {
+		var head = getHeadElement();
+		var lastStyleElementInsertedAtTop = styleElementsInsertedAtTop[styleElementsInsertedAtTop.length - 1];
+		if (options.insertAt === "top") {
+			if(!lastStyleElementInsertedAtTop) {
+				head.insertBefore(styleElement, head.firstChild);
+			} else if(lastStyleElementInsertedAtTop.nextSibling) {
+				head.insertBefore(styleElement, lastStyleElementInsertedAtTop.nextSibling);
+			} else {
+				head.appendChild(styleElement);
+			}
+			styleElementsInsertedAtTop.push(styleElement);
+		} else if (options.insertAt === "bottom") {
+			head.appendChild(styleElement);
+		} else {
+			throw new Error("Invalid value for parameter 'insertAt'. Must be 'top' or 'bottom'.");
+		}
+	}
+
+	function removeStyleElement(styleElement) {
+		styleElement.parentNode.removeChild(styleElement);
+		var idx = styleElementsInsertedAtTop.indexOf(styleElement);
+		if(idx >= 0) {
+			styleElementsInsertedAtTop.splice(idx, 1);
+		}
+	}
+
+	function createStyleElement(options) {
+		var styleElement = document.createElement("style");
+		styleElement.type = "text/css";
+		insertStyleElement(options, styleElement);
+		return styleElement;
+	}
+
+	function createLinkElement(options) {
+		var linkElement = document.createElement("link");
+		linkElement.rel = "stylesheet";
+		insertStyleElement(options, linkElement);
+		return linkElement;
+	}
+
+	function addStyle(obj, options) {
+		var styleElement, update, remove;
+
+		if (options.singleton) {
+			var styleIndex = singletonCounter++;
+			styleElement = singletonElement || (singletonElement = createStyleElement(options));
+			update = applyToSingletonTag.bind(null, styleElement, styleIndex, false);
+			remove = applyToSingletonTag.bind(null, styleElement, styleIndex, true);
+		} else if(obj.sourceMap &&
+			typeof URL === "function" &&
+			typeof URL.createObjectURL === "function" &&
+			typeof URL.revokeObjectURL === "function" &&
+			typeof Blob === "function" &&
+			typeof btoa === "function") {
+			styleElement = createLinkElement(options);
+			update = updateLink.bind(null, styleElement);
+			remove = function() {
+				removeStyleElement(styleElement);
+				if(styleElement.href)
+					URL.revokeObjectURL(styleElement.href);
+			};
+		} else {
+			styleElement = createStyleElement(options);
+			update = applyToTag.bind(null, styleElement);
+			remove = function() {
+				removeStyleElement(styleElement);
+			};
+		}
+
+		update(obj);
+
+		return function updateStyle(newObj) {
+			if(newObj) {
+				if(newObj.css === obj.css && newObj.media === obj.media && newObj.sourceMap === obj.sourceMap)
+					return;
+				update(obj = newObj);
+			} else {
+				remove();
+			}
+		};
+	}
+
+	var replaceText = (function () {
+		var textStore = [];
+
+		return function (index, replacement) {
+			textStore[index] = replacement;
+			return textStore.filter(Boolean).join('\n');
+		};
+	})();
+
+	function applyToSingletonTag(styleElement, index, remove, obj) {
+		var css = remove ? "" : obj.css;
+
+		if (styleElement.styleSheet) {
+			styleElement.styleSheet.cssText = replaceText(index, css);
+		} else {
+			var cssNode = document.createTextNode(css);
+			var childNodes = styleElement.childNodes;
+			if (childNodes[index]) styleElement.removeChild(childNodes[index]);
+			if (childNodes.length) {
+				styleElement.insertBefore(cssNode, childNodes[index]);
+			} else {
+				styleElement.appendChild(cssNode);
+			}
+		}
+	}
+
+	function applyToTag(styleElement, obj) {
+		var css = obj.css;
+		var media = obj.media;
+
+		if(media) {
+			styleElement.setAttribute("media", media)
+		}
+
+		if(styleElement.styleSheet) {
+			styleElement.styleSheet.cssText = css;
+		} else {
+			while(styleElement.firstChild) {
+				styleElement.removeChild(styleElement.firstChild);
+			}
+			styleElement.appendChild(document.createTextNode(css));
+		}
+	}
+
+	function updateLink(linkElement, obj) {
+		var css = obj.css;
+		var sourceMap = obj.sourceMap;
+
+		if(sourceMap) {
+			// http://stackoverflow.com/a/26603875
+			css += "\n/*# sourceMappingURL=data:application/json;base64," + btoa(unescape(encodeURIComponent(JSON.stringify(sourceMap)))) + " */";
+		}
+
+		var blob = new Blob([css], { type: "text/css" });
+
+		var oldSrc = linkElement.href;
+
+		linkElement.href = URL.createObjectURL(blob);
+
+		if(oldSrc)
+			URL.revokeObjectURL(oldSrc);
+	}
+
+
+/***/ },
+/* 178 */
+/***/ function(module, exports, __webpack_require__) {
+
 	var React = __webpack_require__(1);
+	var NumberPane = __webpack_require__(179);
+	var BarPane = __webpack_require__(180);
+	var GraphInput = __webpack_require__(184);
 
 	var Graph = React.createClass({
 	    displayName: 'Graph',
 
+	    getInitialState: function () {
+	        return {
+	            data: [3, 4, 7, 10, 8, 5],
+	            labels: ['A', 'B', 'C', 'D', 'E', 'F']
+	        };
+	    },
+	    updateData: function (index, data) {
+	        var newData = this.state.data;
+	        newData[index] = data;
+	        this.setState({ data: newData });
+	    },
+
 	    render: function () {
+
 	        return React.createElement(
 	            'div',
-	            null,
-	            'GRPH'
+	            { className: 'graph' },
+	            React.createElement(NumberPane, { data: this.state.data }),
+	            React.createElement(BarPane, { data: this.state.data, labels: this.state.labels }),
+	            React.createElement(GraphInput, { data: this.state.data, updateData: this.updateData })
 	        );
 	    }
 	});
 
 	module.exports = Graph;
+
+/***/ },
+/* 179 */
+/***/ function(module, exports, __webpack_require__) {
+
+	var React = __webpack_require__(1);
+
+	var NumberPane = React.createClass({
+	    displayName: 'NumberPane',
+
+	    propTypes: {
+	        data: React.PropTypes.array
+	    },
+
+	    render: function () {
+	        var maxValue = Math.max.apply(Math, this.props.data);
+
+	        var calculatedNumbers = [];
+	        for (var i = 0; i < 11; i++) {
+	            calculatedNumbers[i] = (maxValue - i * maxValue * 0.1).toFixed(2);
+	        }
+
+	        for (i = 0; i < calculatedNumbers.length; i++) {
+	            var itemStyle = {
+	                bottom: (calculatedNumbers.length - i - 1) * 50 + 1
+	            };
+	            calculatedNumbers[i] = React.createElement(
+	                'div',
+	                { className: 'numberPane__item', key: i, style: itemStyle },
+	                calculatedNumbers[i]
+	            );
+	        }
+
+	        return React.createElement(
+	            'div',
+	            { className: 'numberPane' },
+	            calculatedNumbers
+	        );
+	    }
+	});
+
+	module.exports = NumberPane;
+
+/***/ },
+/* 180 */
+/***/ function(module, exports, __webpack_require__) {
+
+	var React = __webpack_require__(1);
+	var Bar = __webpack_require__(181);
+
+	var BarPane = React.createClass({
+	    displayName: 'BarPane',
+
+	    propTypes: {
+	        data: React.PropTypes.array,
+	        labels: React.PropTypes.array
+	    },
+
+	    render: function () {
+
+	        var maxValue = Math.max.apply(Math, this.props.data);
+	        if (!maxValue) {
+	            maxValue = 1;
+	        }
+
+	        var calculatedHeights = [];
+	        for (var i = 0; i < this.props.data.length; i++) {
+	            calculatedHeights[i] = this.props.data[i] / maxValue * 500;
+	        }
+
+	        var bars = [];
+
+	        for (i = 0; i < this.props.data.length; i++) {
+	            bars[i] = React.createElement(Bar, { key: i, height: calculatedHeights[i], label: this.props.labels[i] });
+	        }
+
+	        return React.createElement(
+	            'div',
+	            { className: 'barPane' },
+	            bars
+	        );
+	    }
+	});
+
+	module.exports = BarPane;
+
+/***/ },
+/* 181 */
+/***/ function(module, exports, __webpack_require__) {
+
+	var React = __webpack_require__(1);
+	var BarLabel = __webpack_require__(182);
+	var BarFill = __webpack_require__(183);
+
+	var Bar = React.createClass({
+	    displayName: 'Bar',
+
+	    propTypes: {
+	        height: React.PropTypes.number,
+	        label: React.PropTypes.string
+	    },
+
+	    render: function () {
+	        return React.createElement(
+	            'div',
+	            { className: 'bar' },
+	            React.createElement(BarFill, { height: this.props.height }),
+	            React.createElement(BarLabel, { text: this.props.label })
+	        );
+	    }
+	});
+
+	module.exports = Bar;
+
+/***/ },
+/* 182 */
+/***/ function(module, exports, __webpack_require__) {
+
+	var React = __webpack_require__(1);
+
+	var BarLabel = React.createClass({
+	    displayName: 'BarLabel',
+
+	    propTypes: {
+	        text: React.PropTypes.string
+	    },
+
+	    render: function () {
+	        return React.createElement(
+	            'div',
+	            { className: 'barLabel' },
+	            this.props.text
+	        );
+	    }
+	});
+
+	module.exports = BarLabel;
+
+/***/ },
+/* 183 */
+/***/ function(module, exports, __webpack_require__) {
+
+	var React = __webpack_require__(1);
+
+	var BarFill = React.createClass({
+	    displayName: 'BarFill',
+
+	    propTypes: {
+	        height: React.PropTypes.number
+	    },
+
+	    render: function () {
+
+	        var barStyle = {
+	            height: this.props.height
+	        };
+
+	        return React.createElement('div', { className: 'barFill', style: barStyle });
+	    }
+	});
+
+	module.exports = BarFill;
+
+/***/ },
+/* 184 */
+/***/ function(module, exports, __webpack_require__) {
+
+	var React = __webpack_require__(1);
+	var InputField = __webpack_require__(185);
+
+	var GraphInput = React.createClass({
+	    displayName: 'GraphInput',
+
+	    propTypes: {
+	        data: React.PropTypes.array,
+	        updateData: React.PropTypes.func
+	    },
+
+	    updateData: function (index, data) {
+	        this.props.updateData(index, data);
+	    },
+
+	    render: function () {
+
+	        var fields = [];
+
+	        for (var i = 0; i < this.props.data.length; i++) {
+	            fields[i] = React.createElement(InputField, { key: i, inputId: i, defaultValue: this.props.data[i], updateColumn: this.updateData });
+	        }
+	        return React.createElement(
+	            'div',
+	            { className: 'graphInput' },
+	            fields
+	        );
+	    }
+	});
+
+	module.exports = GraphInput;
+
+/***/ },
+/* 185 */
+/***/ function(module, exports, __webpack_require__) {
+
+	var React = __webpack_require__(1);
+
+	var InputField = React.createClass({
+	    displayName: 'InputField',
+
+	    propTypes: {
+	        defaultValue: React.PropTypes.number,
+	        updateColumn: React.PropTypes.func,
+	        inputId: React.PropTypes.number
+	    },
+
+	    handleChange: function (event) {
+	        var value = event.target.value;
+	        if (!value || value < 0) {
+	            value = 0;
+	        }
+	        this.props.updateColumn(this.props.inputId, parseInt(value));
+	    },
+
+	    render: function () {
+
+	        return React.createElement(
+	            'div',
+	            { className: 'inputField' },
+	            React.createElement('input', { type: 'number', style: { width: 40 }, value: this.props.defaultValue, onChange: this.handleChange })
+	        );
+	    }
+	});
+
+	module.exports = InputField;
 
 /***/ }
 /******/ ]);
