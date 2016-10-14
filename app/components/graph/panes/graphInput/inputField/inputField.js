@@ -9,7 +9,7 @@ var InputField = React.createClass({
 
     handleChange: function(event) {
         var value = event.target.value;
-        if(!value){
+        if(!value || value < 0){
             value = 0;
         }
         this.props.updateColumn(this.props.inputId, parseInt(value));
@@ -21,7 +21,7 @@ var InputField = React.createClass({
 
         return (
             <div className='inputField'>
-                <input type="text" value={this.props.defaultValue} onChange={this.handleChange}/>
+                <input type="number" value={this.props.defaultValue} onChange={this.handleChange}/>
             </div>
             );
     }
