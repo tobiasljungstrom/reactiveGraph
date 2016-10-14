@@ -6,7 +6,7 @@ var GraphInput = require('./panes/graphInput/graphInput');
 var Graph = React.createClass({
     getInitialState: function() {
         return {
-            data: [300, 500, 450, 200, 350, 100]
+            data: [3, 4, 7, 1, 8, 5]
         };
     },
 
